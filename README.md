@@ -1,4 +1,3 @@
-
 Data Science and Comman Line (CLI)
 
 Agenda:
