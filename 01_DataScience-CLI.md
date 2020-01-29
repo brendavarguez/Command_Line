@@ -1,5 +1,6 @@
 
-![osemn](img/osemn_model.png)
+![osemn](imgs/osemn_model.png)
+
 Data science according to the following five steps: 
 (1) obtaining data 
 (2) scrubbing data 
