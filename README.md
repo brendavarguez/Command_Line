@@ -1,12 +1,12 @@
+Command Line
+==========
 
-Data Science and Comman Line (CLI)
-
-Agenda:
-=======
-- Data Science is OSEMN
-- ¿Why is important?
-- Back to Basics
-- Get data and trans
-- Excercises
-- Homework
-- Lectures
+Elements:
+  * User
+  * Host
+  * Directory
+  * Prompt  
+```
+zsh
+hatshex@hatshex-land:~/daten/Projects/2020/int03_mentorias/Command_Line$
+```
