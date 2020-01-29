@@ -1,8 +1,6 @@
-# Command_Line
 
-=======
 Data Science and Comman Line (CLI)
-=======
+
 Agenda:
 =======
 - Data Science is OSEMN
