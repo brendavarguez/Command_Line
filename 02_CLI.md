@@ -35,13 +35,63 @@ El más popular es `bash`, que es un acrónimo de **Bourne again shell**.
   * Prompt  
 
 ``` shell
-hatshex@hatshex-land:~/daten/Projects/2020/int03_mentorias/Command_Line$
+hatshex@hatshex-land:~/daten/Projects/2020/int03_mentorias/Command_Line$  
+```
+![](imgs/bash2.png)
+
+## ¿Cómo navegar? 
+ls
+===================================================================
+Muestra los archivos y directorios ubicados en el directorio actual
+```
+ls
+ls -a # Lista archivos ocultos
+ls -l # Lista información adicional 
+ls -F # Lista solamente directorios
+ls -l my_scr?pt
+ls -l my*
+ls -l my_scr[ai]pt
 ```
 
-## Navegar (atajos)
+pwd
+===================================================================
+Muestra la ruta del directorio actual
+```
+pwd
+```
+
+cd
+===================================================================
+Cambia el directorio actual al directorio que se especifique
+```
+cd /var
+
+cd ~
+
+cd daten 
+
+cd 
+
+
+```
+
+mkdir
+===================================================================
+Crea carpetas
+```
+mkdir test mentorias
+
+mkdir test\ mentorias
+
+mkdir 'test mentorias'
+```
+
+
+atajos
+===================================================================
 Moverse rápidamente en la **CLI** es de vital importancia. 
 ```
-hoy es un buen día para aprender
+Hoy es un buen día para aprender línea de comandos
 ```
 - `Ctrl + a` Inicio de la línea
 - `Ctrl + e` Fin de la línea
@@ -56,144 +106,51 @@ hoy es un buen día para aprender
 - `Ctrl + z` - Manda a *background*
 - `Ctrl + c` - Intenta cancelar
 
-Unix tools 
-=======================================================
-- Pipes y flujos
-- `seq`
-- `wc`
-- `head`, `tail`
-- `split`, `cat`
-- `cut`
-- `uniq`, `sort`
-- Expresiones regulares `regex`
-- `grep`
-- `awk`, `sed`
-- `GNU parallel`
-
-
-Genera secuencias de números...
-
-```
-> seq 5
-
-> seq 3 10
-
-> seq -s '|' 10
-
-> seq -w 1 10
-```
-
-tr
-========================================================
-Cambia, reemplaza o borra caracteres del `stdin` al `stdout`
-
-```
-> man tr
-
-> echo "Hola el equipo RICH IT les da la bienvenida a las mentorías"  | tr '[:upper]' '[:lower]'
-
-> echo "Hola el equipo RICH IT les da la bienvenida a las mentorías"  | tr -d ' '
-
-> echo "Hola el equipo RICH IT les da la bienvenida a las mentorías"  | tr -s ' ' '_'
-
-```
-
-Pipes y flujos
-========================================================
-- `|` (pipe) “Entuba” la salida de un comando al siguiente 
-```
-# grep "busca y selecciona" cadenas o patrones
-> seq 50 | grep 3
-```
-- `>`,`>>`, Redirecciona la salida de los comandos a un sumidero.
-``` shell
-> ls > prueba.txt
-> ls -la   >> prueba.txt
-> ls -lah  >> prueba.txt
-> ls -laht >> prueba.txt
-```
-
-- `<` Redirecciona desde el archivo
-
-```
-> sort < prueba.txt # A la línea de comandos acomoda con sort,
-> sort < prueba.txt > prueba_sort.txt # Guardar el sort a un archivo.
-```
-
-
-curl
-===============================================================
-
-- Obtener datos desde el internet...
-
-```
-# The Time Machine de H.G. Wells, desde el Proyecto Gutenberg
-~ curl http://www.gutenberg.org/cache/epub/35/pg35.txt
-```
-
-```
-# Sin el progress bar (útil cuando vamos a hacer un pipe a otro comando)
-~ curl -s http://www.gutenberg.org/cache/epub/35/pg35.txt
-```
-
-- La opción `-u` por si lo piden usuario y password
-
-```
-~ curl -u username:password ...
-```
-
-- La opción `-L` por si hay redirecciones, por ejemplo si el `URL` empieza con  `http://bit.ly/...`
-
-- También podemos descargar y ejecutar archivos de configuración
-```
-> curl -L https://github.com/hatshex/Mata-burros/blob/master/utils/github.sh | sh 
-```
-
-
-
-Condicionales
-===============================================================
-
-- `&&` es un AND, sólo ejecuta el comando que sigue a `&&` si el
-primero es exitoso.
-
-```
-> ls && echo "Hola"
-> lss && echo "Hola"
-```
-
-wc
-================================================================
-
-- `wc` significa *word count*
-  - Cuenta palabras,renglones, bytes, etc.
-- Es un buen momento para aprender que existe un manual.
-  - `man wc`
-- En nuestro caso nos interesa la bandera `-l` la cual sirve para contar líneas.
-
-```
-> seq 30 | grep 3 | wc -l
-```
-
-```
-> wc -l prueba.txt 
-53 prueba.txt
-
-```
-
-head, tail
+## Crear, Modificar, Eliminar archivos y carpetas
+touch
 ===================================================================
-- `head` y `tail` sirven para explorar visualmente las primeras diez
-(default) o las últimas diez (default) renglones del archivo,
-respectivamente.
-
-
+Crea archivos
 ```
-> head /etc/passwd
-> tail -3 /etc/passwd
+touch prueba.txt
+
+nano prueba.txt
 ```
 
-split, cat
+
+cp
+===================================================================
+Copia archivos o directorios a la ruta que se especifique
+```
+cp test_fuente.txt test_destino.txt
+
+ls -l test_*
+
+cp -i test_fuente.txt test_destino.txt
+```
+
+
+mv
+===================================================================
+Renombra archivos o directorios
+```
+mv test_fuente.txt test_fuente2.txt
+
+ls -l test_*
+
+```
+
+
+rm
+===================================================================
+Elimina archivos o directorios
+```
+rm -i test_*
+
+rm test_*
+```
+
+## Inspeccionar archivos
+cat
 ===================================================================
 - `cat` concatena archivos y/o imprime al `stdout`
 
@@ -214,8 +171,139 @@ split, cat
 
 > wc -l UFO-Nov-Dic-2014.tsv
 ```
+less
+===================================================================
 
-split, cat
+more
+===================================================================
+
+head, tail
+===================================================================
+- `head` y `tail` sirven para explorar visualmente las primeras diez
+(default) o las últimas diez (default) renglones del archivo,
+respectivamente.
+
+
+```
+> head /etc/passwd
+> tail -3 /etc/passwd
+```
+
+wc
+================================================================
+- `wc` significa *word count*
+  - Cuenta palabras,renglones, bytes, etc.
+- Es un buen momento para aprender que existe un manual.
+  - `man wc`
+- En nuestro caso nos interesa la bandera `-l` la cual sirve para contar líneas.
+
+```
+> seq 30 | grep 3 | wc -l
+```
+
+```
+> wc -l prueba.txt 
+53 prueba.txt
+
+```
+
+## Pipes y flujos
+
+Pipe
+========================================================
+- `|` (pipe) “Entuba” la salida de un comando al siguiente 
+```
+# grep "busca y selecciona" cadenas o patrones
+> seq 50 | grep 3
+```
+stdin, stdout
+========================================================
+- `>`,`>>`, Redirecciona la salida de los comandos a un sumidero.
+``` shell
+> ls > prueba.txt
+> ls -la   >> prueba.txt
+> ls -lah  >> prueba.txt
+> ls -laht >> prueba.txt
+```
+
+- `<` Redirecciona desde el archivo
+
+```
+> sort < prueba.txt # A la línea de comandos acomoda con sort,
+> sort < prueba.txt > prueba_sort.txt # Guardar el sort a un archivo.
+```
+
+Condicionales
+===============================================================
+
+- `&&` es un AND, sólo ejecuta el comando que sigue a `&&` si el
+primero es exitoso.
+
+```
+> ls && echo "Hola"
+> lss && echo "Hola"
+```
+
+seq
+===================================================================
+Genera secuencias de números...
+
+```
+> seq 5
+
+> seq 3 10
+
+> seq -s '|' 10
+
+> seq -w 1 10
+```
+
+curl
+===============================================================
+
+- Obtener datos desde el internet...
+
+```
+# The Time Machine de H.G. Wells, desde el Proyecto Gutenberg
+~ curl http://www.gutenberg.org/cache/epub/100/pg100.txt
+```
+
+```
+# Sin el progress bar (útil cuando vamos a hacer un pipe a otro comando)
+~ curl -s --compressed http://www.gutenberg.org/cache/epub/100/pg100.txt
+```
+
+- La opción `-u` por si lo piden usuario y password
+
+```
+~ curl -u username:password ...
+```
+
+- La opción `-L` por si hay redirecciones, por ejemplo si el `URL` empieza con  `http://bit.ly/...`
+
+- También podemos descargar y ejecutar archivos de configuración
+```
+> curl -L https://github.com/hatshex/Mata-burros/blob/master/utils/github.sh | sh 
+```
+
+
+tr
+========================================================
+Cambia, reemplaza o borra caracteres del `stdin` al `stdout`
+
+```
+> man tr
+
+> echo "Hola el equipo RICH IT les da la BIENVENIDA  a las mentorías" | tr '[:upper:]' '[:lower:]'
+
+> echo "Hola el equipo RICH IT les da la BIENVENIDA a las mentorías"  | tr -d ' '
+
+> echo "Hola el equipo RICH IT les da la BIENVENIDA a las mentorías"  | tr -s ' ' '_'
+
+```
+
+
+split
 ===================================================================
 
 - `split` hace la función contraria, divide archivos.
@@ -248,9 +336,93 @@ conjunción con (`-d`), carácter (`-c`) o bytes (`-b`).
 **NOTA**: Para partir por tabulador usa `-d$'\t'`
 
 ```
-$ echo "Adolfo|1978|Físico" >> prueba.psv
-echo "Patty|1984|Abogada" >> prueba.psv
-cut -d’|’ -f1 prueba.psv
-cut -d’|’ -f1,3 prueba.psv
-cut -d’|’ -f1-3 prueba.psv
+$ echo "Gabs|2018|RICH IT|Data Science" >> prueba.psv
+$ echo "Patty|2015|SCJN|Abogada" >> prueba.psv
+$ echo "Sara|2010|TELCEL|Ingeniero" >> prueba.psv
+$ cut -d'|' -f1 prueba.psv
+$ cut -d'|' -f1,3 prueba.psv
+$ cut -d'|' -f1-3 prueba.psv
+```
+
+
+
+uniq y sort
+===============================================================
+
+- `uniq` Identifica aquellos renglones consecutivos que son iguales.
+- `uniq` puede contar (`-c`), eliminar (`-u`), imprimir sólo las duplicadas
+(`-d`), etc.
+- `sort` Ordena el archivo, es muy poderoso, puede ordenar por
+columnas (`-k`), usar ordenamiento numérico (`-g`, `-h`, `-n`), mes
+(`-M`), random (`-r`) etc.
+
+```
+sort -t "," -k 2  UFO-Nov-Dic-2014.tsv
+```
+
+uniq y sort
+===============================================================
+
+- Combinados podemos tener un `group by`:
+
+```
+# Group by por timestamp y estado
+ cat UFO-Dic-2014.tsv \
+      | cut -d$'\t' -f1,3 \
+      | sort -t $'\t' -k 2 -k 1 \
+      | uniq -c | head
+```
+
+
+grep
+========================================================
+
+`grep` nos permite buscar líneas que tengan un patrón específico
+
+```
+> echo "Hola grupo ¿Cómo están?" | grep -oE '\w+'
+> grep "CA" UFO-Nov-2014.tsv
+> grep "HOAX" UFO-Nov-2014.tsv
+> grep -v "18:" UFO-Nov-2014.tsv
+> grep -E "18:|19:|20:" UFO-Nov-2014.tsv
+> grep -E "[B|b]lue|[O|o]range" UFO-Nov2014.tsv \
+        | grep -v "Orangebug"
+> grep -i -E "[blue|orange]" UFO-Dic-2014.tsv
+> grep -c -o -E "[B|b]lue|[O|o]range" UFO-Nov-2014.tsv  # Ejecuta una bandera a la vez
+> grep -o -E "[B|b]lue|[O|o]range" UFO-Nov-2014.tsv | sort | uniq -c
+> grep "\/[0-9]\{1,2\}\/" UFO-Dic-2014.tsv # Seleccionamos días
+> grep -v "\/[0-9]\{4\}" UFO-Dic-2014.tsv  # Año mal formateado
+> grep -E "([aeiou]).*\1" names.txt # Vocal caracteres Misma vocal
+```
+
+sed
+=========================================================
+
+- `sed` significa *stream editor* . Permite editar archivos de manera automática.
+- El comando tiene cuatro *espacios*
+  - Flujo de entrada
+  - Patrón
+  - Búfer
+  - Flujo de salida
+- Entonces, `sed` lee el *flujo de entrada* hasta que encuentra `\n`. Lo copia al *espacio patrón*, y es ahí donde se realizan las operaciones con los datos. El *búfer* está para su uso, pero es opcional, es un búfer, vamos. Y finalmente copia al *flujo de salida*.
+
+
+sed
+==========================================================
+```
+echo "Buenos días en la CDMX" | sed 's/CDMX/Ciudad de México/'
+> sed 's/foo/bar/' data3.txt   # Sustituye foo por bar
+> sed -n 's/foo/bar/' data3.txt # Lo mismo pero no imprime a la salida
+> sed -n 's/foo/bar/; p' data3.txt # Lo mismo pero el comando "p", imprime
+> sed -n 's/foo/bar/' -e p data3.txt # Si no queremos separar por espacios
+> sed '3s/foo/bar/'  data3.txt # Sólo la tercera linea
+> sed '3!s/foo/bar/'  data3.txt # Excluye la tercera línea
+> sed '2,3s/foo/bar/' data3.txt # Con rango
+> sed -n '2,3p' data3.txt  # Imprime sólo las líneas de la 2 a la 3
+> sed -n '$p' # Imprime la última línea
+> sed '/abc/,/-foo-/d' data3.txt # Elimina todas las líneas entre "abc" y "-foo-"
+> sed '/123/s/foo/bar/g'  data3.txt
+# Sustituye globalmente "foo" por "bar" en las líneas que tengan 123
+> sed 1d data2.txt # Elimina la primera línea del archivo
+> sed -i 1d data2.txt  # Elimina la primera línea del archivo de manera interactiva
 ```
