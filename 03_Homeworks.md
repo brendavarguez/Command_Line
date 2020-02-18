@@ -19,10 +19,11 @@ Primer Proyecto
 
 Segundo proyecto
 =========================================
-  Generar un script `problema1.sh` que:
+  Generar un script `ufos.sh` que:
     - Combine la información de los archivos UFO-Dic-2014.tsv y UFO-Nov-2014.tsv en uno `UFOS-Nov-Dic-2014.tsv`.
     - Transforma el archivo `UFOS-Nov-Dic-2014.tsv` de tabuladores a `|`, cambia el nombre con terminación `.psv`.
 
+Realizar un archivo `reporte.md` que contenga los comandos que se utilizaron y las respuestas a las siguientes preguntas:
 Contestar las siguientes preguntas:
 - ¿Cuántas observaciones totales?`
 - ¿Cuál es el top 5 de estados?
