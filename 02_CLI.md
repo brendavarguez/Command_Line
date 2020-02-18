@@ -426,3 +426,100 @@ echo "Buenos días en la CDMX" | sed 's/CDMX/Ciudad de México/'
 > sed 1d data2.txt # Elimina la primera línea del archivo
 > sed -i 1d data2.txt  # Elimina la primera línea del archivo de manera interactiva
 ```
+
+
+
+
+Bash programming
+========================================================
+- Al final hay que poner esto en un archivo, ponerlo a correr e irnos
+  a pensar...
+- Para cualquier programa *script* es importante que la primera línea del archivo le diga a bash que comando usar para ejecutarlo.
+
+- También hay dar permisos de ejecución al archivo
+
+```
+~ chmod u+x ejemplo.py
+```
+
+Bash programming
+========================================================
+
+- A la primera línea se conoce como *shebang* y se representa por `#!` seguido de la ruta al ejecutable
+
+Variables
+========================================================
+a=z                     # Asignar la cadena "z" a la variable a
+b="a string"            # Asignar cadenas entre comillas.
+c="a string and $b"     # ASignar cadena y valor de variable
+d="$(ls -l README.md)"  # Resultado de un comando
+e=$((5 * 7))            # Operaciones aritméticas
+
+nombre_archivo="Prueba.txt"
+touch $nombre_archivo 
+mv "$nombre_archivo" "$nombre_archivo1"
+mv "$nombre_archivo" "${nombre_archivo}1"
+
+
+Ciclos
+========================================================
+Podemos hacer _loops_ sobre varias cosas:
+
+- Sobre números
+
+```
+for i in {0..5}
+do
+echo "Imprimiendo variable i: $i"
+done
+```
+```
+for i in {0..10..2}
+do
+echo "Imprimiendo variable i: $i"
+done
+```
+```
+for i in $(seq 1 2 20)
+do
+   echo "Imprimiendo variable i: $i"
+done
+```
+
+- Sobre líneas
+
+```
+curl -s --compressed http://www.gutenberg.org/cache/epub/35/pg35.txt > time_machine.txt
+
+i=0
+while read line
+do
+((++i)) 
+echo "Línea $i : ${line}"
+done < time_machine.txt
+```
+
+Serie
+========================================================
+
+- Y sobre archivos
+
+```
+cd /home/hatshex/daten/Projects/2020/int03_mentorias/Command_Line
+## Listar todos los archivos *.md
+for archivo in ./*.md
+do
+echo "El archivo es ${archivo}"
+done
+```
+Esto último tiene muchos problemas (no maneja espacios o caracteres raros, por ejemplo).
+
+Una mejor alternativa es `find`
+
+```
+find awk_sed -name '*.txt' -exec echo "El archivo es {}" \;
+```
+
+Además `find` permite buscar por fecha, tamaño, fecha de acceso, permisos, etc.
+
+
